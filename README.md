@@ -4,7 +4,7 @@ This project is a carbon footprint calculator Website built on React with typesc
 
 ## Website
 
-[Carbon Footprint calculator](https://app.swaggerhub.com/apis-docs/sina6/dev-sinai_api/V1).
+[Carbon Footprint calculator](https://master.d2js3bvowktjbf.amplifyapp.com).
 
 ## Getting Started with Create React App
 
