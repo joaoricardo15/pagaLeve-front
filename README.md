@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Carbon Footprint calculator Website
+
+This project is a carbon footprint calculator Website built on React with typescript, and it is part of a technical test proposed by [Sinai Technologies](https://www.sinaitechnologies.com/).
+
+## Website
+
+[Carbon Footprint calculator](https://app.swaggerhub.com/apis-docs/sina6/dev-sinai_api/V1).
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
