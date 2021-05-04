@@ -74,6 +74,7 @@ const Calculator: FC = () => {
                 rules={numberValidation}
               >
                 <Input
+                  min={0}
                   type="number"
                   className="input"
                   addonAfter="kWh/month"
@@ -85,6 +86,7 @@ const Calculator: FC = () => {
                 rules={numberValidation}
               >
                 <Input
+                  min={0}
                   type="number"
                   className="input"
                   addonAfter="miles/day"
@@ -96,6 +98,7 @@ const Calculator: FC = () => {
                 rules={numberValidation}
               >
                 <Input
+                  min={0}
                   type="number"
                   className="input"
                   addonAfter="kg/week"
@@ -124,7 +127,7 @@ const Calculator: FC = () => {
                 </>
               }
               <div className="title result-text">
-                { error || emission }
+                { error || (emission && Math.round(emission)) }
               </div>
               <Button
                 className="button"
