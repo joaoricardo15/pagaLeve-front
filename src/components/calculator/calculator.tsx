@@ -1,6 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 import { FC, useState } from "react";
-import { Form, Button, InputNumber, Spin, Tooltip, Input } from "antd";
+import { Form, Button, Spin, Tooltip, Input } from "antd";
 import { InfoCircleOutlined } from '@ant-design/icons';
 import ApiRequest from "../../services/requests";
 import './calculator.css';
@@ -11,9 +11,10 @@ const numberValidation = [
   },
   () => ({
     validator(_: any, value: any) {
-      const isValidNumber = !value || parseInt(value)
+      console.log(value, typeof value, !value, value == 0)
+      const isValidNumber = !value || value == 0 || parseInt(value)
       return isValidNumber ?
-        Promise.resolve(parseInt(value)) :
+        Promise.resolve() :
         Promise.reject('Input is not a valid number');
     },
   })
@@ -25,21 +26,21 @@ const Calculator: FC = () => {
   const [emission, setEmission] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const simulateFootprint = (usage: { electricity: string, waste: string, water: string }): void => {
+  const simulateFootprint = (usage: { electricity: string, vehicle: string, waste: string }): void => {
     setFetching(true);
     console.log(usage)
     apiRequest.getSimulation(
       parseInt(usage.electricity),
-      parseInt(usage.waste),
-      parseInt(usage.water))
+      parseInt(usage.vehicle),
+      parseInt(usage.waste))
       .then(response => setEmission(response.emission))
       .catch(response => setError(response.message))
       .finally(() => setFetching(false));
   };
 
   const reset = () => {
-    emission && setEmission(null);
-    error && setError(null);
+    setEmission(null);
+    setError(null);
   }
 
   return (
@@ -55,7 +56,7 @@ const Calculator: FC = () => {
           onFinish={simulateFootprint} 
           validateMessages={{ required: '${name} is required!' }}
         >
-          { !emission && !error ?
+          { !error && emission == null ?
             <>
               <div className="title">
                 Checkout your carbon footprint
@@ -65,7 +66,7 @@ const Calculator: FC = () => {
                 </Tooltip>
               </div>
               <div className="subtitle">
-                by typing your own usage of electricity, waste and water
+                by typing your own usage of electricity, waste and water.
               </div>
               <Form.Item
                 name={'electricity'} 
@@ -79,14 +80,14 @@ const Calculator: FC = () => {
                 />
               </Form.Item>
               <Form.Item
-                name="water"
-                label="Water"
+                name="vehicle"
+                label="Vehicle"
                 rules={numberValidation}
               >
                 <Input
                   type="number"
                   className="input"
-                  addonAfter="liters/day"
+                  addonAfter="miles/day"
                 />
               </Form.Item>
               <Form.Item
@@ -118,7 +119,7 @@ const Calculator: FC = () => {
                     Your carbon footprint is:
                   </div>
                   <div className="subtitle">
-                    Annual CO2 emissions (kg)
+                    Annual CO2 emissions (kg) based on the given amounts of electricity, vehicle and waste.
                   </div>
                 </>
               }

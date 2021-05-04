@@ -18,10 +18,10 @@ interface simulationFailResult {
 
 const ApiRequest = () => {
 
-    const getSimulation = (electricity: number, waste: number, water: number): 
+    const getSimulation = (electricity: number, vehicle: number, waste: number): 
         Promise<simulationSuccessResult | simulationFailResult> => {
             return new Promise((resolve, reject) => {
-                simulationApi.post(`/simulateFootprint`, { electricity, waste, water })
+                simulationApi.post(`/simulateFootprint`, { electricity, vehicle, waste })
                     .then(response => resolve(response.data))
                     .catch(error => reject(error));
             })
