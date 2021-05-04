@@ -2,7 +2,8 @@
 
 .App {
   min-height: 100vh;
-  /* background-color: black; */
+  background-color: black;
+  color: white;
 }
 
 .App-header {
@@ -14,5 +15,5 @@
 .App-content {
   width: 100%;
   position: absolute;
-  top: calc(30px + 20vh);
+  top: 120px;
 }
