@@ -40,49 +40,46 @@ const App = () => {
         });
     }, []);
 
-  return (//authState === AuthState.SignedIn && user ? (
-      <ThemeProvider theme={theme}>
-        <Router history={history}>
-          <div className="h-100 bg-light">
-            <NavBar style={{ height: 120 }}/>
-            <div style={{ height: 'calc(100% - 120px)', overflowY: 'scroll' }}> 
-              <div className="container p-2 p-md-5" style={{ maxWidth: 800 }}>
-                <Switch> 
-                  <Route exact path="/" render={props => <Home {...props} />} />
-                  <Route path="/customers" render={props => <Customers {...props} />} />
-                  <Route path="/endpoints" render={props => <Endpoints {...props} />} />
-                  <Route path="/logs" render={props => <Logs {...props} />} />
-                </Switch>
-              </div>
+  return authState === AuthState.SignedIn && user ?
+    <ThemeProvider theme={theme}>
+      <Router history={history}>
+        <div className="h-100 bg-light">
+          <NavBar style={{ height: 120 }}/>
+          <div style={{ height: 'calc(100% - 120px)', overflowY: 'scroll' }}> 
+            <div className="container p-2 p-md-5" style={{ maxWidth: 800 }}>
+              <Switch> 
+                <Route exact path="/" render={props => <Home {...props} />} />
+                <Route path="/customers" render={props => <Customers {...props} />} />
+                <Route path="/endpoints" render={props => <Endpoints {...props} />} />
+                <Route path="/logs" render={props => <Logs {...props} />} />
+              </Switch>
             </div>
           </div>
-        </Router> 
-      </ThemeProvider>)
-  //   ) : (
-  //     <AmplifyAuthenticator>
-  //       <AmplifySignIn
-  //         slot="sign-in"
-  //         // usernameAlias="email"
-  //         headerText="PagaLeve Customers"
-  //         submitButtonText="Login"
-  //         hideSignUp="true"
-  //         formFields={[
-  //           {
-  //             // type: "email",
-  //             label: "E-mail",
-  //             placeholder: "Type your e-mail",
-  //             required: true,
-  //           },
-  //           {
-  //             type: "password",
-  //             label: "Password",
-  //             placeholder: "Type your password",
-  //             required: true,
-  //           },
-  //         ]}  
-  //       />
-  //     </AmplifyAuthenticator>
-  // );
+        </div>
+      </Router> 
+    </ThemeProvider>
+    : <AmplifyAuthenticator>
+      <AmplifySignIn
+        slot="sign-in"
+        usernameAlias="email"
+        headerText="PagaLeve Customers"
+        submitButtonText="Login"
+        formFields={[
+          {
+            type: "username",
+            label: "Username",
+            placeholder: "Type your username",
+            required: true,
+          },
+          {
+            type: "password",
+            label: "Password",
+            placeholder: "Type your password",
+            required: true,
+          }
+        ]}  
+      />
+    </AmplifyAuthenticator>;
 }
 
 export default App;
