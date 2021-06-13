@@ -1,10 +1,10 @@
 {
-  "short_name": "SINAI",
-  "name": "SINAI - Footprint Calculator",
+  "short_name": "PagaLeve Customers",
+  "name": "PagaLeve Customers API",
   "icons": [
     {
-      "src": "favicon.png",
-      "sizes": "512x512 192x192 64x64 32x32 24x24 16x16",
+      "src": "logo.png",
+      "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
   ],

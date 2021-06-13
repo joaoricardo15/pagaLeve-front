@@ -1,19 +1,69 @@
-@import '~antd/dist/antd.css';
+:root {
+  /* --amplify-font-family: 'Amazon Ember', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --amplify-text-xxs: 0.75rem;
+  --amplify-text-xs: 0.81rem;
+  --amplify-text-sm: 0.875rem;
+  --amplify-text-md: 1rem;
+  --amplify-text-md-sub: 1.15rem;
+  --amplify-text-lg: 1.5rem;
+  --amplify-text-xl: 2rem;
+  --amplify-text-xxl: 2.5rem; */
 
-.App {
-  min-height: 100vh;
-  background-color: black;
-  color: white;
+  --amplify-primary-color: #687CEA;
+  --amplify-primary-contrast: var(--amplify-white);
+  --amplify-primary-tint: #4A4A55;
+  --amplify-primary-shade: #4A4A55;
+
+  --amplify-secondary-color: #152939;
+  --amplify-secondary-contrast: var(--amplify-white);
+  --amplify-secondary-tint: #687CEA;
+  --amplify-secondary-shade: #1F2A37;
+  
+  /* --amplify-tertiary-color: #5d8aff;
+  --amplify-tertiary-contrast: var(--amplify-white);
+  --amplify-tertiary-tint: #7da1ff;
+  --amplify-tertiary-shade: #537BE5;
+  --amplify-background-color: var(--amplify-white);
+  --amplify-grey: #828282;
+  --amplify-light-grey: #c4c4c4;
+  --amplify-white: #ffffff;
+  --amplify-smoke-white: #f5f5f5;
+  --amplify-red: #dd3f5b;
+  --amplify-blue: #099ac8; */
 }
 
-.App-header {
-  position: absolute;
-  top: 30px;
-  left: 30px;
+.next-steps .fa-link {
+  margin-right: 5px;
 }
 
-.App-content {
-  width: 100%;
+/* Fix for use only flexbox in content area */
+.next-steps .row {
+  margin-bottom: 0;
+}
+
+.next-steps .col-md-5 {
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .next-steps .col-md-5 {
+    margin-bottom: 0;
+  }
+}
+
+.spinner {
   position: absolute;
-  top: 120px;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.result-block-container .result-block {
+  opacity: 1;
 }
