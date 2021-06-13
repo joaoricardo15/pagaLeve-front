@@ -1,6 +1,6 @@
 # PagaLeve Customers Front
 
-[PagaLeve](https://pagaleve.com).
+[PagaLeve](https://pagaleve.click).
 
 # Frameworks
 
