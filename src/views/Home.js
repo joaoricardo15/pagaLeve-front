@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
-import Endpoints from "../views/Endpoints";
+import Customers from "../views/Customers";
 
 const Home = (props) =>
   <Fragment>
-    <Endpoints {...props} />
+    <Customers {...props} />
   </Fragment>;
 
 export default Home;

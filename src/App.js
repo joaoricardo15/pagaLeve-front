@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import Amplify from 'aws-amplify';
+import Amplify, { Auth } from 'aws-amplify';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { AmplifyAuthenticator, AmplifySignIn } from "@aws-amplify/ui-react";
 import { createMuiTheme } from "@material-ui/core";
@@ -10,11 +10,13 @@ import awsconfig from './aws-exports';
 import NavBar from "./components/NavBar";
 import history from "./utils/history";
 import Home from "./views/Home";
+import Customers from "./views/Customers";
 import Endpoints from "./views/Endpoints";
 import Logs from "./views/Logs";
 import "./App.css";
 
 Amplify.configure(awsconfig);
+Auth.configure(awsconfig);
 
 const theme = createMuiTheme({
   palette: {
@@ -38,7 +40,7 @@ const App = () => {
         });
     }, []);
 
-  return authState === AuthState.SignedIn && user ? (
+  return (//authState === AuthState.SignedIn && user ? (
       <ThemeProvider theme={theme}>
         <Router history={history}>
           <div className="h-100 bg-light">
@@ -46,40 +48,41 @@ const App = () => {
             <div style={{ height: 'calc(100% - 120px)', overflowY: 'scroll' }}> 
               <div className="container p-2 p-md-5" style={{ maxWidth: 800 }}>
                 <Switch> 
-                  <Route exact path="/" render={props => <Home {...props} title="Navigate elsewhere" />} />
-                  <Route path="/bots" render={props => <Endpoints {...props} title="Navigate elsewhere" />} />
-                  <Route path="/logs" render={props => <Logs {...props} title="Navigate elsewhere" />} />
+                  <Route exact path="/" render={props => <Home {...props} />} />
+                  <Route path="/customers" render={props => <Customers {...props} />} />
+                  <Route path="/endpoints" render={props => <Endpoints {...props} />} />
+                  <Route path="/logs" render={props => <Logs {...props} />} />
                 </Switch>
               </div>
             </div>
           </div>
         </Router> 
-      </ThemeProvider>
-    ) : (
-      <AmplifyAuthenticator>
-        <AmplifySignIn
-          slot="sign-in"
-          usernameAlias="email"
-          headerText="PagaLeve Customers"
-          submitButtonText="Login"
-          hideSignUp="true"
-          formFields={[
-            {
-              type: "email",
-              label: "E-mail",
-              placeholder: "Type your e-mail",
-              required: true,
-            },
-            {
-              type: "password",
-              label: "Password",
-              placeholder: "Type your password",
-              required: true,
-            },
-          ]}  
-        />
-      </AmplifyAuthenticator>
-  );
+      </ThemeProvider>)
+  //   ) : (
+  //     <AmplifyAuthenticator>
+  //       <AmplifySignIn
+  //         slot="sign-in"
+  //         // usernameAlias="email"
+  //         headerText="PagaLeve Customers"
+  //         submitButtonText="Login"
+  //         hideSignUp="true"
+  //         formFields={[
+  //           {
+  //             // type: "email",
+  //             label: "E-mail",
+  //             placeholder: "Type your e-mail",
+  //             required: true,
+  //           },
+  //           {
+  //             type: "password",
+  //             label: "Password",
+  //             placeholder: "Type your password",
+  //             required: true,
+  //           },
+  //         ]}  
+  //       />
+  //     </AmplifyAuthenticator>
+  // );
 }
 
 export default App;

@@ -9,9 +9,17 @@ const NavBar = () => {
   return (
     <AppBar className="bg-white" position="static">
       <Toolbar className="d-flex justify-content-between">
-        <NavLink exact to="/" className="text-dark">
-          <Logo />
-        </NavLink>
+        <div>
+          <NavLink exact to="/" className="text-dark">
+            <Logo />
+          </NavLink>
+          <NavLink exact to="/customers" className="ml-3 text-blue">
+            Customers
+          </NavLink>
+          <NavLink exact to="/endpoints" className="ml-3 text-blue">
+            Logs
+          </NavLink>
+        </div>
         <AmplifySignOut buttonText="Sair" /> 
       </Toolbar>
     </AppBar>

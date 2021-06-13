@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const API_CUSTOMERS_URL = 'cjzedhi6n9.execute-api.us-east-1.amazonaws.com/prod'
+const API_CUSTOMERS_URL = 'https://cjzedhi6n9.execute-api.us-east-1.amazonaws.com/prod'
 
 const headers = {
   'Accept': 'application/json',

@@ -1,15 +1,18 @@
 # PagaLeve Customers Front
 
-[PagaLeve](https://pagaleve.com.br).
+[PagaLeve](https://pagaleve.com).
 
-# FrameWorks
+# Frameworks
 
 This project uses:
 -   [ReactJS](https://reactjs.org/).
 
+-   [CSS Bootstrap](https://getbootstrap.com/docs/3.4/css/)
+
 -   [Amplify](https://docs.amplify.aws/)
-    -   AWS Cognito
-    -   AWS automated deployment connected with GitHub
+
+    -   [AWS Cognito](https://aws.amazon.com/cognito/)
+    -    Automated deployment connected with [GitHub](https://github.com/)
 
 ## Project setup
 

@@ -4,29 +4,42 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ButtomComponent from "../components/Button";
+import InputComponent from "../components/Input";
 import ApiRequest from "../requests/customersApi";
 import TextComponent from "../components/Text";
 
-export const Endpoints = ({ history }) => {
+export const Customers = ({ history }) => {
   const apiRequest = ApiRequest();
   const [fetching, setFetching] = useState(false);
-  const [endpoints, setEndpoints] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [search, setSearch] = useState(null);
 
   const navigateToLogs = endpointName => {
     history.push('/logs', { endpointName });
   }
 
-  const refreshEndpoints = () => {
+  const refreshCustomers = () => {
     setFetching(true);
 
-    apiRequest.getEndpoints()
-      .then(endpoints => setEndpoints(endpoints))
+    apiRequest.getCustomers()
+      .then(customers => {
+        setCustomers(customers)
+        setSearch(null)
+      })
+      .finally(() => setFetching(false))
+  };
+
+  const searchCustomers = searchTerm => {
+    setFetching(true);
+
+    apiRequest.searchCustomers(searchTerm)
+      .then(customers => setCustomers(customers))
       .finally(() => setFetching(false))
   };
 
   useEffect(() => {
     return (
-      refreshEndpoints()
+      refreshCustomers()
     )
   }, [])
 
@@ -34,38 +47,50 @@ export const Endpoints = ({ history }) => {
     <div>
       <div className="d-flex align-items-center justify-content-between">
         <TextComponent type="h5">
-          Endpoints
+          Customers
         </TextComponent>
+        <InputComponent
+          type="text"
+          value={search}
+          className="ml-3 mr-3"
+          placeholder="Search on customers"
+          onChange={event => {
+            event.value ? 
+              searchCustomers(event.value) :
+              refreshCustomers()
+          }}
+          onInputChange={(event, newInputValue) => {
+            setSearch(newInputValue)
+          }}
+        />
         <ButtomComponent
           iconButton
           icon={<RefreshIcon />}
           tooltip="Refresh"
-          onClick={refreshEndpoints}
+          onClick={refreshCustomers}
         />
       </div>
       <div className="mt-5">
-        {!fetching && endpoints ?
-          (endpoints.length > 0 ?
-            endpoints.map(bot =>
-              <Card key={bot.endpointName} className="d-flex mb-3">
+        {!fetching && customers ?
+          (customers.length > 0 ?
+            customers.map(customer =>
+              <Card key={customer.customerId} className="d-flex mb-3">
                 <ButtonBase
                   className="w-100 justify-content-between  p-3"
-                  onClick={() => navigateToLogs(bot.endpointName)}
+                  onClick={() => navigateToLogs(customer.name)}
                 >
                   <TextComponent style={{ alignSelf: 'center' }}>
-                    {bot.endpointName}
+                    {customer.name}
                   </TextComponent>
-                  {bot.lastActivity &&
-                    <Chip
-                      label={`${new Date(bot.lastActivity.timestamp).toLocaleDateString()} - ${new Date(bot.lastActivity.timestamp).toLocaleTimeString()}`}
-                      className={bot.lastActivity.status === 'fail' ? 'bg-danger' : bot.lastActivity.status === 'success' ? 'bg-success' : ''}
-                    />
-                  }
+                  <Chip
+                    label={customer.email}
+                    className={'bg-success'}
+                  />
                 </ButtonBase>
               </Card>
             ) :
             <TextComponent>
-              Você ainda não tem nenhum endpoint!
+              No customers :(
             </TextComponent>
           ) :
           ['', '', '', '', '', '', '', ''].map((el, i) => <Skeleton key={i} className="rounded mb-3" animation="wave" variant="rect" height={80}></Skeleton>)
@@ -75,4 +100,4 @@ export const Endpoints = ({ history }) => {
   );
 };
 
-export default Endpoints;
+export default Customers;
