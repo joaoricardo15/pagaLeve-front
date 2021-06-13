@@ -46,26 +46,26 @@ export const Endpoints = ({ history }) => {
       <div className="mt-5">
         {!fetching && endpoints ?
           (endpoints.length > 0 ?
-            endpoints.map(bot =>
-              <Card key={bot.endpointName} className="d-flex mb-3">
+            endpoints.map(endpoint => endpoint.endpointName.includes('customers') && 
+              <Card key={endpoint.endpointName} className="d-flex mb-3">
                 <ButtonBase
                   className="w-100 justify-content-between  p-3"
-                  onClick={() => navigateToLogs(bot.endpointName)}
+                  onClick={() => navigateToLogs(endpoint.endpointName)}
                 >
                   <TextComponent style={{ alignSelf: 'center' }}>
-                    {bot.endpointName}
+                    {endpoint.endpointName}
                   </TextComponent>
-                  {bot.lastActivity &&
+                  {endpoint.lastActivity &&
                     <Chip
-                      label={`${new Date(bot.lastActivity.timestamp).toLocaleDateString()} - ${new Date(bot.lastActivity.timestamp).toLocaleTimeString()}`}
-                      className={bot.lastActivity.status === 'fail' ? 'bg-danger' : bot.lastActivity.status === 'success' ? 'bg-success' : ''}
+                      label={`${new Date(endpoint.lastActivity.timestamp).toLocaleDateString()} - ${new Date(endpoint.lastActivity.timestamp).toLocaleTimeString()}`}
+                      className={endpoint.lastActivity.status === 'fail' ? 'bg-danger' : endpoint.lastActivity.status === 'success' ? 'bg-success' : ''}
                     />
                   }
                 </ButtonBase>
               </Card>
             ) :
-            <TextComponent>
-              Você ainda não tem nenhum endpoint!
+            <TextComponent className="text-center">
+              No endpoint!
             </TextComponent>
           ) :
           ['', '', '', '', '', '', '', ''].map((el, i) => <Skeleton key={i} className="rounded mb-3" animation="wave" variant="rect" height={80}></Skeleton>)

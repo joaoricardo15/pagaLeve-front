@@ -13,10 +13,10 @@ const NavBar = () => {
           <NavLink exact to="/" className="text-dark">
             <Logo />
           </NavLink>
-          <NavLink exact to="/customers" className="ml-3 text-blue">
+          <NavLink exact to="/customers" className="ml-3 text-primary">
             Customers
           </NavLink>
-          <NavLink exact to="/endpoints" className="ml-3 text-blue">
+          <NavLink exact to="/endpoints" className="ml-3 text-primary">
             Logs
           </NavLink>
         </div>

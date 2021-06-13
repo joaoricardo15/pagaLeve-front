@@ -94,7 +94,7 @@ export const LogsComponent = ({ location, history }) => {
                   </AccordionDetails>
                 </Accordion>
               </div>)
-            : <TextComponent className="mt-5 d-flex justify-content-center">
+            : <TextComponent className="text-center">
                 This endpoint has no logs yet!
               </TextComponent>
           ) :

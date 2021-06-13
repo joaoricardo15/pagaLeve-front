@@ -56,7 +56,7 @@ export const InputComponent = ({ value, onChange, label, placeholder, className,
             <TextField {...params} variant="outlined" label={label} placeholder={placeholder} size={size}/>
           }
         /> 
-        : <div>nothing</div> }
+        : undefined }
     </div>
   );
 };

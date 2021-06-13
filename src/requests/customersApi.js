@@ -13,7 +13,23 @@ const ApiRequest = () => {
     const searchCustomers = searchText => {
         return new Promise((resolve, reject) => {
             customersApi.get(`/customers/search/${searchText}`)
-                .then(response => resolve(response.data))
+                .then(response => resolve(response.data.data))
+                .catch(error => reject(error));
+        })
+    }
+
+    const createCustomer = customer => {
+        return new Promise((resolve, reject) => {
+            customersApi.post(`/customers`, customer)
+                .then(response => resolve(response.data.data))
+                .catch(error => reject(error));
+        })
+    }
+
+    const deleteCustomer = customerId => {
+        return new Promise((resolve, reject) => {
+            customersApi.delete(`/customers/${customerId}`)
+                .then(response => resolve(response.data.data))
                 .catch(error => reject(error));
         })
     }
@@ -37,6 +53,8 @@ const ApiRequest = () => {
     return {
         getCustomers,
         searchCustomers,
+        createCustomer,
+        deleteCustomer,
         getEndpoints,
         getLogs
     }
