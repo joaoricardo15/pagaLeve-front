@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Router, Route, Switch } from "react-router-dom";
+import ReactGA from "react-ga";
 import Amplify, { Auth } from 'aws-amplify';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { AmplifyAuthenticator, AmplifySignIn } from "@aws-amplify/ui-react";
@@ -35,6 +36,7 @@ const App = () => {
     const [user, setUser] = useState();
 
     useEffect(() => {
+        ReactGA.initialize("UA-170290043-1");
         return onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
             setUser(authData);
@@ -49,7 +51,7 @@ const App = () => {
           <Router history={history}>
             <div className="h-100 bg-light">
               <NavBar style={{ height: 120 }}/>
-              <div style={{ height: 'calc(100% - 120px)', overflowY: 'scroll' }}> 
+              <div style={{ height: '100vh', overflowY: 'scroll' }}> 
                 <div className="container p-2 p-md-5" style={{ maxWidth: 800 }}>
                   <Switch> 
                     <Route exact path="/" render={props => <Home {...props} />} />
