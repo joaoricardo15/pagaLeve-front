@@ -20,7 +20,7 @@ const NavBar = () => {
             Logs
           </NavLink>
         </div>
-        <AmplifySignOut buttonText="Sair" /> 
+        <AmplifySignOut buttonText="Logout" /> 
       </Toolbar>
     </AppBar>
   );
