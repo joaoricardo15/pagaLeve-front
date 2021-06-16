@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import ReactGA from "react-ga";
 import Amplify, { Auth } from 'aws-amplify';
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { AmplifyAuthenticator, AmplifySignIn } from "@aws-amplify/ui-react";
@@ -36,7 +35,6 @@ const App = () => {
     const [user, setUser] = useState();
 
     useEffect(() => {
-        ReactGA.initialize("UA-170290043-1");
         return onAuthUIStateChange((nextAuthState, authData) => {
             setAuthState(nextAuthState);
             setUser(authData);

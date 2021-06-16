@@ -1,6 +1,6 @@
 {
     "identityPoolName": "pagelevebb41724d_identitypool_bb41724d",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "pagelebb41724d",
     "userPoolName": "pagelevebb41724d_userpool_bb41724d",
     "autoVerifiedAttributes": [
